@@ -73,7 +73,7 @@ const getRandomColor = () => {
 const disco = () => {
   if (cardsContainer.innerHTML !== "") {
     setInterval(() => {
-      cardsContainer.style.backgroundColor = getRandomColor();
+      loadFriends();
     }, 300);
   }
 }
