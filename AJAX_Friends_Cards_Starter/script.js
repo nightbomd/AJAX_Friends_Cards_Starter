@@ -42,23 +42,25 @@ function loadFriends() {
 
   xhr.open("GET", "friends.json");
   xhr.onload = function () {
-    if (xhr.status >= 200 && xhr.status <= 300) {
-
-      const data = JSON.parse(xhr.responseText);
-      console.log(data);
-      renderFriends(data);
-
-    }
-    else {
+     if (xhr.status >= 200 && xhr.status < 300) {
+      try {
+        const data = JSON.parse(xhr.responseText);
+        console.log(data);
+        renderFriends(data);
+      } catch (error) {
+        showDataError(error);
+      }
+    } else {
       showLoadError();
     }
+  };
 
-  }
   xhr.onerror = function () {
     showLoadError();
-  }
+  };
+
   xhr.send();
-}
+  }
 
 const getRandomColor = () => {
   const letters = "0123456789ABCDEF";
