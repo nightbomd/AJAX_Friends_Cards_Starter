@@ -60,6 +60,22 @@ function loadFriends() {
   xhr.send();
 }
 
+const getRandomColor = () => {
+  const letters = "0123456789ABCDEF";
+  let color = "#";
+  for (let i = 0; i < 6; i++) {
+    color += letters[Math.floor(Math.random() * 16)];
+  }
+  return color;
+}
+const disco = () => {
+  if (cardsContainer.innerHTML !== "") {
+    setInterval(() => {
+      cardsContainer.style.backgroundColor = getRandomColor();
+    }, 300);
+  }
+}
+
 
 // -------------------------------------------------------------
 // renderFriends: turn the array into cards on the page.
@@ -70,18 +86,21 @@ function renderFriends(friends) {
   // Use this supplied markup inside a template literal. Replace each
   // [PLACEHOLDER] with an expression that reads the current person.
   // Hobbies is an array: show it as readable, comma-separated text.
-  /*
-  <div class="col-12 col-md-6 col-lg-4">
+  
+   const cards = friends.map(f => `<div class="col-12 col-md-6 col-lg-4">
     <article class="card h-100">
-      <div class="card-body">
-        <h2 class="card-title h4">[NAME]</h2>
-        <p class="relationship">[RELATIONSHIP]</p>
-        <p>[DETAIL]</p>
-        <p class="hobbies"><strong>Hobbies:</strong> [HOBBIES]</p>
+      <div class="card-body rounded shadow" style="background-color: ${getRandomColor()};">
+        <h2 class="card-title h4">${f.name}</h2>
+        <p class="relationship">${f.relationship}</p>
+        <p>${f.detail}</p>
+        <p class="hobbies"><strong>Hobbies:</strong> ${f.hobbies.join(", ")}</p>
       </div>
     </article>
-  </div>
-  */
+  </div>`).join(" ");
+  cardsContainer.innerHTML = cards;
+
+
+
 
 
   // Supplied success message. Keep this after the cards are updated.
@@ -112,3 +131,5 @@ function showDataError(error) {
   console.error("Data problem:", error.message);
 }
 loadButton.addEventListener("click", loadFriends);
+const discoBtn = document.getElementById("disco");
+discoBtn.addEventListener("click", disco);
