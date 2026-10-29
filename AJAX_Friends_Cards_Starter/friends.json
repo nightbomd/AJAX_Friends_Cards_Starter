@@ -28,5 +28,11 @@
         "relationship": "friend",
         "detail": "thyschell is a really good at track and really good at triple jump",
         "hobbies": ["being good at track", "being good at triple jump", "being funny"]
+    },
+    {
+        "name": "sofia rashid",
+        "relationship": "day1 since marel",
+        "detail": "sofia is a really good friend of mine and she is really smart in math",
+        "hobbies": ["being smart in NORMAL psychology (ap nap)", "being a good friend", "being funny"]
     }
 ]
